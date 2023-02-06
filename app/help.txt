@@ -1,0 +1,26 @@
+migrate create -seq -ext=.sql -dir=./migrations create_movies_table
+
+if you want to see which migration version your database is currently on you can run
+the migrate toolʼs version command, like so
+    migrate -path=./migrations -database=$EXAMPLE_DSN version
+
+You can also migrate up or down to a specific version by using the goto command:
+    migrate -path=./migrations -database=$EXAMPLE_DSN goto 1
+    migrate -path=./migrations -database=$EXAMPLE_DSN down
+
+What you need to do is investigate the original error and figure out if the
+migration file which failed was partially applied. If it was, then you need
+to manually roll-back the partially applied migration.
+Once thatʼs done, then you must also ʻforceʼ the version number in the
+schema_migrations table to the correct value. For example, to force the
+database version number to 1 you should use the force command like
+so
+    migrate -path=./migrations -database=$EXAMPLE_DSN force 1
+
+The migrate tool also supports reading migration files from remote
+sources including Amazon S3 and GitHub repositories. For example:
+    migrate -source="s3://<bucket>/<path>" -database=$EXAMPLE_DSN up
+    migrate -source="github://owner/repo/path#ref" -database=$EXAMPLE_DSN up
+    migrate -source="github://user:personal-access-token@owner/repo/path#ref" - database=$EXAMPLE_DSN up
+More information about this functionality and a full list of the supported
+remote resources can be found https://github.com/golang-migrate/migrate#migration-sources

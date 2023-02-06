@@ -7,6 +7,8 @@ services:
     restart: always
     ports:
       - 8000:8000
+    environment:
+      GREENLIGHT_DB_DSN_DOCKER: ${GREENLIGHT_DB_DSN_DOCKER:-postgres://greenlight:pa55word@postgres/greenlight?sslmode=disable}
     depends_on:
       - postgres
 
