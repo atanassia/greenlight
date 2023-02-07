@@ -88,6 +88,7 @@ func (m MovieModel) Delete(id int64) error {
 	return nil
 }
 
+
 type MockMovieModel struct{}
 
 func (m MockMovieModel) Insert(movie *Movie) error {
