@@ -27,4 +27,4 @@ app/tls/*.pem
 
 vendor/
 
-*.env
+.env
