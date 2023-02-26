@@ -6,7 +6,7 @@ services:
     build: ./app
     restart: always
     ports:
-      - 8000:8000
+      - 4000:4000
     environment:
       GREENLIGHT_DB_DSN_DOCKER: ${GREENLIGHT_DB_DSN_DOCKER}
       SMTP_HOST: ${SMTP_HOST}
